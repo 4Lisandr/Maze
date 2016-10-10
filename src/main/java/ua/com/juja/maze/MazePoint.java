@@ -10,6 +10,10 @@ public class MazePoint extends Point {
         color = Color.WHITE;
     }
 
+    public MazePoint(int x, int y, boolean b) {
+        super(x, y, b);
+    }
+
     // 0 - Left  1 Up  2 Right 3 Down
     public void setAdjacent(int maxX, int maxY) {
         if (x-2>0)

@@ -60,6 +60,8 @@ public class Maze {
                     MazePoint mazePoint = new MazePoint(x,y);
                     mazePoint.setAdjacent(length, height);
                     mazeMatrix[y][x] = mazePoint;
+                } else {
+                    mazeMatrix[y][x] = new MazePoint(x,y,false);
                 }
             }
         }

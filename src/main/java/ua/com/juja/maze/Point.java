@@ -25,6 +25,7 @@ public class Point {
     public Point(int x, int y, boolean isFree) {
         this(x,y);
         this.isFree = isFree;
+        color = isFree ? Color.WHITE : Color.BLACK;
     }
 
     public int getX() {
