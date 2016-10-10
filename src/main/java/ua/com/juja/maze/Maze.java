@@ -65,8 +65,8 @@ public class Maze {
         }
     }
 
-    public char[][] getMazeMatrix() {
-        return mazeMatrix;
-    }
+//    public char[][] getMazeMatrix() {
+//        return mazeMatrix;
+//    }
 
 }
