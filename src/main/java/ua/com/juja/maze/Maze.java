@@ -58,7 +58,7 @@ public class Maze {
             for (int x = 0; x < length; x++) {
                 if (y%2==1 && x%2==1){
                     MazePoint mazePoint = new MazePoint(x,y);
-                    mazePoint.setAdjacent();
+                    mazePoint.setAdjacent(length, height);
                     mazeMatrix[y][x] = mazePoint;
                 }
             }
