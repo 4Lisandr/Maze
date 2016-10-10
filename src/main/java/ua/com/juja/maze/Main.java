@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         if(args.length!=2){
-            System.out.println("Wrong arguments!");
+            System.out.println("Invalid arguments!");
             System.out.println("Usage: -path1 -path2 (for example: C://input.txt C://out.txt)");
         }
 

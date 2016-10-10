@@ -1,5 +1,7 @@
 package ua.com.juja.maze;
 
+import java.awt.*;
+
 /**
  *
  */
@@ -10,11 +12,14 @@ public class Point {
     int x;
     int y;
     boolean isFree;
+    Color color; // WHITE = FREE,  BLACK = BUSY, RED - ENTRY, GREEN - EXIT, YELLOW - path marker
+
 
     // Default = BUSY
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+        color = Color.BLACK;
     }
 
     public Point(int x, int y, boolean isFree) {

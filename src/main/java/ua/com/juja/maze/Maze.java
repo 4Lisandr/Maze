@@ -13,7 +13,7 @@ public class Maze {
     Point exit;
     List<Point> path;
     List<Point> branches;
-    char[][] mazeMatrix;
+    MazePoint [][] mazeMatrix;
 
     // конструктор вызовем из мейна, передадим ему данные из файла
     public Maze(int length, int height, Point entry, Point exit) {
@@ -39,22 +39,28 @@ public class Maze {
     // меняем матрицу, возвращаем список из двух точек
     private List<Point> createCanvas(Point entry, Point exit) {
         List<Point> result = new ArrayList<>();
-        putPoint(entry, result);
-        putPoint(exit, result);
+//        putPoint(entry, result);
+//        putPoint(exit, result);
         return result;
     }
 
-    private void putPoint(Point p, List<Point> result) {
-        mazeMatrix[p.getY()][p.getX()] = Point.FREE;
-        result.add(p);
-    }
+//    private void putPoint(Point p, List<Point> result) {
+//        mazeMatrix[p.getY()][p.getX()] = Point.FREE;
+//        result.add(p);
+//    }
 
-    // заполним матрицу звездочками
+    // заполним матрицу "решетом", то есть вкраплением белых клеток на черном фоне
     private void initMatrix(int height, int length) {
-        mazeMatrix = new char[height][length];
+        mazeMatrix = new MazePoint[height][length];
+        // простой частный случай, если вход и выход имеют нечетные индексы,
+        // а размер поля тоже нечетен
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < length; x++) {
-                mazeMatrix[y][x] = Point.BUSY;
+                if (y%2==1 && x%2==1){
+                    MazePoint mazePoint = new MazePoint(x,y);
+                    mazePoint.setAdjacent();
+                    mazeMatrix[y][x] = mazePoint;
+                }
             }
         }
     }
