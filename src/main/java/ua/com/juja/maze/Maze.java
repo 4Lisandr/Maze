@@ -51,7 +51,11 @@ public class Maze {
 //    }
 
     // заполним матрицу "решетом", то есть вкраплением белых клеток на черном фоне
-    private void initMatrix(int height, int length) {
+    /**
+     * @startPoint - как вариант расположить возле входа //todo startPoint
+     * */
+    private MazePoint initMatrix(int height, int length) {
+        MazePoint startPoint = null;
         mazeMatrix = new MazePoint[height][length];
         // простой частный случай, если вход и выход имеют нечетные индексы (odd),
         // а размер поля тоже нечетен, тогда odd=1
@@ -63,11 +67,17 @@ public class Maze {
                     MazePoint mazePoint = new MazePoint(x,y);
                     mazePoint.setAdjacent(length, height);
                     mazeMatrix[y][x] = mazePoint;
+                    if (startPoint == null)
+                        startPoint = mazePoint;
                 } else {
                     mazeMatrix[y][x] = new MazePoint(x,y,false);
                 }
             }
         }
+        if (startPoint != null) {
+            startPoint.setColor(Color.GREEN);
+        }
+        return startPoint;
     }
     // 3. Уберите стенку между текущей клеткой и выбранной
     // 4. Сделайте выбранную клетку текущей и отметьте ее как посещенную.
