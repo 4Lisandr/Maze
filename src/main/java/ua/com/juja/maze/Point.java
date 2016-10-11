@@ -12,7 +12,7 @@ public class Point {
     int x;
     int y;
     boolean isFree;
-    Color color; // WHITE = FREE,  BLACK = BUSY, RED - ENTRY, GREEN - EXIT, YELLOW - path marker
+    Color color; // WHITE = FREE,  BLACK = BUSY, RED - ENTRY||EXIT, GREEN - CURRENT, YELLOW - path marker
 
 
     // Default = BUSY
@@ -38,5 +38,9 @@ public class Point {
 
     public char getChar() {
         return isFree ? FREE : BUSY;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

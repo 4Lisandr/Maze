@@ -1,5 +1,6 @@
 package ua.com.juja.maze;
 import java.awt.*;
+import java.util.Random;
 
 public class MazePoint extends Point {
 
@@ -24,6 +25,29 @@ public class MazePoint extends Point {
             adjacent[2] = new MazePoint(x+2, y);
         if (y+2<maxY)
             adjacent[3] = new MazePoint(x, y+2);
+    }
+
+    public boolean hasNotVisitedAdjacent(){
+        for(MazePoint mp: adjacent){
+            if(mp!=null && mp.getColor().equals(Color.WHITE))
+                return true;
+        }
+        return false;
+    }
+    // 2. Выберите случайную клетку из соседних
+    public MazePoint getRandomAdjacent(){
+        MazePoint[] selection = new MazePoint[4];
+        int selected = 0;
+        for (int i = 0; i < 4; i++) {
+            MazePoint mp = adjacent[i];
+            if(mp!=null && mp.getColor().equals(Color.WHITE)){
+                selection[selected] = mp;
+                selected++;
+            }
+        }
+        Random random = new Random();
+        //random.nextInt(max - min + 1) + min, min = 0, max = 4
+        return selection[random.nextInt(selected+1)];
     }
 
     public void setColor(Color color) {
