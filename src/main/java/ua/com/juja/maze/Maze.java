@@ -52,11 +52,13 @@ public class Maze {
     // заполним матрицу "решетом", то есть вкраплением белых клеток на черном фоне
     private void initMatrix(int height, int length) {
         mazeMatrix = new MazePoint[height][length];
-        // простой частный случай, если вход и выход имеют нечетные индексы,
-        // а размер поля тоже нечетен
+        // простой частный случай, если вход и выход имеют нечетные индексы (odd),
+        // а размер поля тоже нечетен, тогда odd=1
+        int xOdd = (entry.getX()%2==1)?1:0;
+        int yOdd = (entry.getY()%2==1)?1:0;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < length; x++) {
-                if (y%2==1 && x%2==1){
+                if (y%2==yOdd && x%2==xOdd && !isBound(x,y)){
                     MazePoint mazePoint = new MazePoint(x,y);
                     mazePoint.setAdjacent(length, height);
                     mazeMatrix[y][x] = mazePoint;
@@ -65,6 +67,10 @@ public class Maze {
                 }
             }
         }
+    }
+
+    private boolean isBound(int x, int y) {
+        return x==0 || y==0 || x==length-1 || y == height-1;
     }
 
 //    public char[][] getMazeMatrix() {
