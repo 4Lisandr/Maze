@@ -1,5 +1,6 @@
 package ua.com.juja.maze;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +68,23 @@ public class Maze {
                 }
             }
         }
+    }
+    // 3. Уберите стенку между текущей клеткой и выбранной
+    // 4. Сделайте выбранную клетку текущей и отметьте ее как посещенную.
+    private void removeTheWall(MazePoint current, MazePoint neighbor){
+        if(current==null || neighbor==null || current.equals(neighbor))
+            return;
+
+        int x = 0, y = 0;
+        if(current.getX()== neighbor.getX())
+            y = (current.getY()+ neighbor.getY())/2;
+
+        if(current.getY()== neighbor.getY())
+            x = (current.getX()+ neighbor.getX())/2;
+
+        current.setColor(Color.YELLOW);
+        mazeMatrix[y][x].setColor(Color.YELLOW); // remove wall here
+        neighbor.setColor(Color.GREEN);
     }
 
     private boolean isBound(int x, int y) {

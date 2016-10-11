@@ -5,10 +5,11 @@ import java.util.Random;
 public class MazePoint extends Point {
 
     MazePoint[] adjacent = new MazePoint[4]; // храним ссылки на смежные свободные ячейки (до 4х)
+    private boolean isVisited; // проходил ли курсор через эту клетку
+
     public MazePoint(int x, int y) {
         super(x, y);
-        isFree = true;
-        color = Color.WHITE;
+        setColor(Color.WHITE);
     }
 
     public MazePoint(int x, int y, boolean b) {
@@ -50,8 +51,12 @@ public class MazePoint extends Point {
         return selection[random.nextInt(selected+1)];
     }
 
+    // WHITE = FREE,  BLACK = BUSY, RED - ENTRY||EXIT, GREEN - CURRENT, YELLOW - path marker
     public void setColor(Color color) {
         this.color = color;
+        isFree = !color.equals(Color.BLACK);
+        isVisited = color.equals(Color.GREEN);
+    //  isEntryOrExit = !color.equals(Color.RED);
     }
 
     public MazePoint[] getAdjacent() {
