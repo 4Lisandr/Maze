@@ -59,8 +59,8 @@ public class Maze {
         mazeMatrix = new MazePoint[height][length];
         // простой частный случай, если вход и выход имеют нечетные индексы (odd),
         // а размер поля тоже нечетен, тогда odd=1
-        int xOdd = (entry.getX()%2==1)?1:0;
-        int yOdd = (entry.getY()%2==1)?1:0;
+        int xOdd = entry.getX()%2;
+        int yOdd = entry.getY()%2;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < length; x++) {
                 if (y%2==yOdd && x%2==xOdd && !isBound(x,y)){
